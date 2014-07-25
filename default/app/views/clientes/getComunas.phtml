@@ -1,0 +1,17 @@
+<?php
+	echo select_tag(array("clientes.comunas_id", $comunas, 'option' => 'nombre', 'include_blank'=> 'Seleccione...'));
+?>		
+ 
+<script type='text/javascript'>
+$("#clientes_comunas_id").change(function(){
+	var comunas_id 	=	$('#clientes_comunas_id').val();
+        $.ajax({
+          type: "POST",
+          url: "<?php echo PUBLIC_PATH . 'clientes/getCiudades/'; ?>",
+          data: "comunas_id=" + comunas_id,
+          success: function(html){
+            $("#div_ciudades").html(html);
+          }
+        });
+});
+</script>

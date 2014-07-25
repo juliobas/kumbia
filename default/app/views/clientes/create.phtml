@@ -1,0 +1,39 @@
+<?php View::content(); ?>
+<?php echo form_tag("$controller_name/$action_name"); ?>
+<table id='table_forms'>
+	<tr>
+		<th>Región</th>
+		<td>
+		<?php
+		echo select_tag(array('clientes.regiones_id', $regiones, 'option' => 'nombre', 'include_blank' => 'Seleccione...'));
+		?>
+		</td>
+	</tr>
+	<tr>
+		<th>Comuna</th>
+		<td><div id='div_comunas'></div><td>
+	</tr>
+	<tr>
+		<th>Ciudad</th>
+		<td><div id='div_ciudades'></div></td>
+	</tr>	
+	<tr>
+		<td colspan="2" align="center"><?php echo submit_tag('Agregar')?></td>
+	</tr>
+</table>
+<?php echo end_form_tag(); ?>
+ 
+ 
+<script type='text/javascript'>
+$("#clientes_regiones_id").change(function(){
+	var regiones_id 	=	$('#clientes_regiones_id').val();
+        $.ajax({
+          type: "POST",
+          url: "<?php echo PUBLIC_PATH . 'clientes/getComunas/'; ?>",
+          data: "regiones_id=" + regiones_id,
+          success: function(html){
+            $("#div_comunas").html(html);
+          }
+        });
+});
+</script>

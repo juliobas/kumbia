@@ -1,0 +1,7 @@
+<h1>Hola <?php echo $nombre; ?>, ¡Qué lindo es utilizar KumbiaPHP! ¿No es cierto?</h1> 
+<?php echo $fecha ?>
+
+<?php
+    echo Ajax::link('saludo/adios/', 'Salir', 'capa_saludo');
+    echo Tag::js('jquery/jquery+kumbiaphp.min');
+?>
